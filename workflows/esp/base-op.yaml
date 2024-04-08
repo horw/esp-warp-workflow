@@ -1,0 +1,64 @@
+---
+name: ESP IDF Set Up Target
+command: "idf.py set-target {{target}}"
+tags: ["esp", "idf"]
+description: Set example target.
+arguments:
+  - name: target
+    description: Your target device.
+    default_value: esp32
+source_url: "https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html"
+
+---
+name: ESP IDF Export
+command: ". ./export.sh"
+tags: ["esp"]
+description: Export ESP IDF.
+source_url: "https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html"
+
+---
+name: ESP Tool Flash Image
+command: "esptool.py --chip {{target}} merge_bin --fill-flash-size 4MB -o flash_image.bin @flash_args"
+tags: ["esp"]
+arguments:
+  - name: target
+    description: Your target device.
+    default_value: esp32
+description: Create flash_image with esptool.py.
+source_url: "https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html"
+
+---
+name: ESP List USB
+command: "ls /dev/ttyUSB*"
+tags: ["esp"]
+description: List all ttyUSB.
+source_url: "https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html"
+
+---
+name: ESP Build App
+command: "idf.py build"
+tags: ["esp"]
+description: Build your ESP app.
+source_url: "https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html"
+
+---
+name: ESP Flash App
+command: "idf.py flash -p /dev/ttyUSB{{port_number}}"
+tags: ["esp"]
+description: Flash your ESP app.
+arguments:
+  - name: port_number
+    description: Your ESP serial port number.
+    default_value: 0
+source_url: "https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html"
+
+---
+name: ESP Monitor App
+command: "idf.py monitor -p /dev/ttyUSB{{port_number}}"
+tags: ["esp"]
+description: Monitor your app.
+arguments:
+  - name: port_number
+    description: Your ESP serial port number.
+    default_value: 0
+source_url: "https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html"
